@@ -49,15 +49,15 @@ const Products = () => {
         />
       </div>
 
-      <div className='grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-3'>
+      <div className='grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4'>
         {filteredProducts.map((data) => (
-          <div key={data.id} className=" rounded-xl shadow-inner shadow-gray-500/40 md:p-5">
-            <p className='font-serif text-lg p-2'>{data.title}</p>
+          <div key={data.id} className=" rounded-xl shadow-inner shadow-gray-500/40 md:p-5 sm:p-5 p-5 ">
+            <p className='font-serif text-lg  '>{data.title}</p>
             <img src={data.thumbnail} alt='thumbnail' />
-            <p className="font-serif text-sm p-1">Brand: {data.brand}</p>
-            <p className="font-serif text-sm p-1">Price: {data.price}</p>
-            <p className="font-serif text-sm p-1">Category: {data.category}</p>
-            <p className="font-serif text-sm p-1">Rating: {data.rating}</p>
+            <p className="font-serif text-sm mt-1">Brand: {data.brand}</p>
+            <p className="font-serif text-sm mt-1">Price: {data.price}</p>
+            <p className="font-serif text-sm mt-1">Category: {data.category}</p>
+            <p className="font-serif text-sm mt-1">Rating: {data.rating}</p>
             <button onClick={() => handleClick(data.id)}
               className='font-serif text-sm rounded-xl bg-blue-700 p-2 text-white mt-1' type='button'>Details</button>
             <button onClick={() => handleDelete(data.id)}
