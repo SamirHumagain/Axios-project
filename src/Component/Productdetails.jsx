@@ -47,8 +47,8 @@ const Productdetails = () => {
             alt={products.title} 
             className="w-full h-auto md:w-1/2 rounded-lg" 
           />
-          <div className='mt-4 md:mt-0 md:ml-4 md:w-1/2'>
-            <p className="font-serif text-sm p-1">Title: {products.title}</p>
+          <div className=' md:mt-0 md:ml-4 md:w-1/2 '>
+            <p className="font-serif text-sm p-1 mt-10">Title: {products.title}</p>
             <p className="font-serif text-sm p-1">Brand: {products.brand}</p>
             <p className="font-serif text-sm p-1">Price: ${products.price}</p>
             <p className="font-serif text-sm p-1">Category: {products.category}</p>
@@ -134,4 +134,4 @@ const Productdetails = () => {
   );
 };
 
-export default Productdetails;
+export default Productdetails; 
