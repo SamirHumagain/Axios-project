@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 
+
 const LoginPage = () => {
 
   const navigate = useNavigate();
@@ -46,10 +47,12 @@ const LoginPage = () => {
               localStorage.setItem("email", res.data.email);
               localStorage.setItem("Firstname", res.data.firstName);
               localStorage.setItem("image", res.data.image);
-              localStorage.setItem("AccessToken", res.data.accessToken);
               localStorage.setItem("RefreshToken", res.data.refreshToken);
+              localStorage.setItem("AccessToken", res.data.accessToken);
+              
 
               const token = localStorage.getItem("AccessToken");
+          
               
               if (token) {
                 navigate("/products");

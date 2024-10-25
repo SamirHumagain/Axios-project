@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-// import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+
 
 const Editpage = () => {
   const { id } = useParams();
