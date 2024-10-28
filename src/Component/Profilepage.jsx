@@ -23,7 +23,7 @@ const Profilepage = () => {
     <label className='font-bold text-xl'>Firstname</label>
     <p >{firstName}</p>
     <label className='font-bold text-xl'>Image</label>
-    <p >{image}</p>
+    <img src={image}/>
     </div>
     </div>
     

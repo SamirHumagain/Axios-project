@@ -22,10 +22,11 @@ const Navbar = () => {
           <>
             <Link to="/profile" className="text-lg font-semibold text-gray-400 hover:text-gray-900">Profile</Link>
             <Link to="/products" className="text-lg font-semibold text-gray-400 hover:text-gray-900">Products</Link>
+            <Link to="/recipes" className="text-lg font-semibold text-gray-400 hover:text-gray-900">Recipes</Link>
             <button onClick={handleLogout} className="text-lg font-semibold text-gray-400 hover:text-gray-900">Logout</button>
           </>
         ) : (
-          <Link to="/login" className="text-lg font-semibold text-gray-400 hover:text-gray-900">Log in</Link>
+          <Link  className="text-lg font-semibold text-gray-400 hover:text-gray-900">Sign Up</Link>
         )}
       </div>
     </nav>
