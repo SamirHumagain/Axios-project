@@ -1,0 +1,8 @@
+.custom-div {
+  @apply text-[#e74c3c] text-[0.875rem] mt-[0.5rem] mb-[1rem];
+}
+
+.custom-input {
+  @apply text-[black] w-[20em] p-[0.5rem] placeholder:py-[0.5rem] border border-[#ccc] rounded-lg text-[0.9rem] focus:border-[#007bff] focus:outline-none;
+  transition: border-color 0.3s ease;
+}
