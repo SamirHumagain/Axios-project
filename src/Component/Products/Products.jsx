@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProducts,
@@ -7,6 +7,7 @@ import {
 import { setSearch } from "../../Redux/products/productslice";
 import { useNavigate } from "react-router-dom";
 import Buttons from "../../Reusable/button";
+import Confirmtoaster from "../../Reusable/Confirmtoaster";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const Products = () => {
     search,
   } = useSelector((state) => state.products);
 
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -28,7 +32,22 @@ const Products = () => {
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
+    setProductToDelete(id);
+
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = () => {
+    if (productToDelete) {
+      dispatch(deleteProduct(productToDelete));
+      setProductToDelete(null);
+      setShowConfirm(false);
+    }
+  };
+
+  const cancelDelete = () => {
+    setProductToDelete(null);
+    setShowConfirm(false);
   };
 
   const handleSearch = (e) => {
@@ -79,6 +98,13 @@ const Products = () => {
               />
             </div>
           ))}
+          {showConfirm && (
+            <Confirmtoaster
+              message="Are you sure you want to delete this product?"
+              onConfirm={confirmDelete}
+              onCancel={cancelDelete}
+            />
+          )}
         </div>
       )}
     </>

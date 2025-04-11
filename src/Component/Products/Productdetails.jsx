@@ -76,16 +76,24 @@ const Productdetails = () => {
           />
           <div className=" md:mt-0 md:ml-4 md:w-1/2 ">
             <p className="font-serif text-sm p-1 mt-10">
-              Title: {products.title}
+              <span className="text-red-800"> Title:</span> {products.title}
             </p>
-            <p className="font-serif text-sm p-1">Brand: {products.brand}</p>
-            <p className="font-serif text-sm p-1">Price: ${products.price}</p>
             <p className="font-serif text-sm p-1">
-              Category: {products.category}
+              <span className="text-red-800"> Brand:</span> {products.brand}
             </p>
-            <p className="font-serif text-sm p-1">Rating: {products.rating}</p>
             <p className="font-serif text-sm p-1">
-              Description: {products.description}
+              <span className="text-red-800"> Price:</span> ${products.price}
+            </p>
+            <p className="font-serif text-sm p-1">
+              <span className="text-red-800"> Category:</span>
+              {products.category}
+            </p>
+            <p className="font-serif text-sm p-1">
+              <span className="text-red-800"> Rating:</span> {products.rating}
+            </p>
+            <p className="font-serif text-sm p-1">
+              <span className="text-red-800"> Description:</span>{" "}
+              {products.description}
             </p>
             <div className="flex  p-2 text-xl font-semibold">
               <button

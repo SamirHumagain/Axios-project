@@ -50,6 +50,7 @@ const AddToCart = () => {
                   alt={item.title}
                   className="w-16 h-16 rounded-md"
                 />
+
                 <p>{item.title}</p>
 
                 <div className="flex  p-2 text-xl font-semibold">

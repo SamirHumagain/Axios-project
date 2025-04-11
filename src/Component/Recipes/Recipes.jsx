@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Buttons from "../../Reusable/button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes, deleteRecipe } from "../../Redux/Recipes/recipesaction";
 import { setSearchRecipe } from "../../Redux/Recipes/recipeslice";
+import Confirmtoaster from "../../Reusable/Confirmtoaster";
 
 const Recipes = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { recipes = [], search } = useSelector((state) => state.recipes);
+
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [recipeToDelete, setRecipeToDelete] = useState(null);
 
   useEffect(() => {
     dispatch(fetchRecipes());
@@ -20,8 +24,21 @@ const Recipes = () => {
   };
 
   const handleDelete = (id) => {
-    console.log("Deleting recipe with ID:", id);
-    dispatch(deleteRecipe(id));
+    setRecipeToDelete(id);
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = () => {
+    if (recipeToDelete) {
+      dispatch(deleteRecipe(recipeToDelete));
+      setRecipeToDelete(null);
+      setShowConfirm(false);
+    }
+  };
+
+  const cancelDelete = () => {
+    setRecipeToDelete(null);
+    setShowConfirm(false);
   };
 
   const handleSearch = (e) => {
@@ -41,6 +58,7 @@ const Recipes = () => {
         onChange={handleSearch}
         name="search"
       />
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
         {filteredRecipes.map((recipe) => (
           <div
@@ -58,11 +76,19 @@ const Recipes = () => {
               handleClick={handledetails}
               data={recipe}
               showdelete={true}
-              handleDelete={handleDelete}
+              handleDelete={() => handleDelete(recipe.id)}
             />
           </div>
         ))}
       </div>
+
+      {showConfirm && (
+        <Confirmtoaster
+          message="Are you sure you want to delete this recipe?"
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
+        />
+      )}
     </div>
   );
 };
