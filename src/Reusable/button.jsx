@@ -8,6 +8,8 @@ const Buttons = ({
   showdetails,
   showdelete,
   showedit,
+  showaddtocart,
+  handleAddtocart,
 }) => {
   return (
     <div>
@@ -37,6 +39,16 @@ const Buttons = ({
           type="button"
         >
           Edit
+        </button>
+      )}
+
+      {showaddtocart && (
+        <button
+          onClick={handleAddtocart}
+          className="font-serif text-sm rounded-xl bg-orange-700 p-2 text-white ml-2"
+          type="button"
+        >
+          Add to cart
         </button>
       )}
     </div>

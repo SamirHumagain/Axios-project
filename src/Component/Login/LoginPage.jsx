@@ -2,12 +2,12 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../Redux/loginpage/authaction";
+import { loginUser } from "../../Redux/loginpage/authaction";
 import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import image from "../assets/340366-PAPUKD-986.jpg";
-import logo from "../assets/bird_2.jpg";
+import image from "../../assets/340366-PAPUKD-986.jpg";
+import logo from "../../assets/bird_2.jpg";
 
 const LoginPage = () => {
   const dispatch = useDispatch();

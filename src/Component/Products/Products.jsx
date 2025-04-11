@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, deleteProduct } from "../Redux/products/productaction";
-import { setSearch } from "../Redux/products/productslice";
+import {
+  fetchProducts,
+  deleteProduct,
+} from "../../Redux/products/productaction";
+import { setSearch } from "../../Redux/products/productslice";
 import { useNavigate } from "react-router-dom";
-import Buttons from "../Reusable/button";
+import Buttons from "../../Reusable/button";
 
 const Products = () => {
   const dispatch = useDispatch();

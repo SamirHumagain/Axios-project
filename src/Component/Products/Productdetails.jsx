@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import {
   Dialog,
@@ -9,13 +9,15 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import Buttons from "../Reusable/button";
+import Buttons from "../../Reusable/button";
 
 const Productdetails = () => {
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [editdetails, setEditdetails] = useState({});
   const [open, setOpen] = useState(false);
+  const [count, setCount] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`https://dummyjson.com/products/${id}`).then((res) => {
@@ -45,6 +47,24 @@ const Productdetails = () => {
     handleClose();
   };
 
+  const handleAddtocart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const productToAdd = { ...products, quantity: count };
+
+    const existingProduct = cart.find((item) => item.id === productToAdd.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += count || 1;
+    } else {
+      cart.push(productToAdd);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    navigate("/addtocart");
+  };
+
   return (
     <>
       <div className="flex flex-col md:flex-row justify-center items-center h-[calc(100vh-48px)] p-4">
@@ -67,7 +87,27 @@ const Productdetails = () => {
             <p className="font-serif text-sm p-1">
               Description: {products.description}
             </p>
-            <Buttons handleOpen={handleOpen} showedit={true} />
+            <div className="flex  p-2 text-xl font-semibold">
+              <button
+                onClick={() => setCount((prev) => Math.max(1, prev - 1))}
+                className="px-2 bg-slate-200 rounded-md "
+              >
+                -
+              </button>
+              <p className="text-lg  px-2">{count}</p>
+              <button
+                onClick={() => setCount((prev) => prev + 1)}
+                className="px-2 bg-slate-200 rounded-md "
+              >
+                +
+              </button>
+            </div>
+            <Buttons
+              handleOpen={handleOpen}
+              showedit={true}
+              showaddtocart={true}
+              handleAddtocart={handleAddtocart}
+            />
           </div>
         </div>
 

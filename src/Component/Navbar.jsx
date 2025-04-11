@@ -1,48 +1,59 @@
 import React from "react";
 import logo from "../assets/react.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { isAuthentication } from "../auth";
-import ReusablePopup from "./modal";
+import { PiShoppingCartFill } from "react-icons/pi";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleLogout() {
     localStorage.removeItem("AccessToken");
     navigate("/login");
   }
 
+  const isActive = (path) =>
+    location.pathname === path ? "text-blue-600 underline" : "text-gray-400";
+
   return (
     <nav className="flex sticky top-0 bg-white shadow-md z-10 pl-2">
-      <Link to="/" className="mt-2">
+      <Link className="mt-2">
         <img src={logo} alt="reactlogo" />
       </Link>
 
       <div className="h-12 p-3 w-full flex justify-end items-end space-x-8 mr-5">
         {isAuthentication() ? (
           <>
-            <ReusablePopup
-              trigger={
-                <button className="text-lg font-semibold text-gray-400 hover:text-gray-900">
-                  Add User
-                </button>
-              }
-            />
+            <Link
+              to="/addtocart"
+              className={`text-xl font-semibold mb-1 ${isActive(
+                "/addtocart"
+              )} hover:text-gray-900`}
+            >
+              <PiShoppingCartFill />
+            </Link>
             <Link
               to="/profile"
-              className="text-lg font-semibold text-gray-400 hover:text-gray-900"
+              className={`text-lg font-semibold ${isActive(
+                "/profile"
+              )} hover:text-gray-900`}
             >
               Profile
             </Link>
             <Link
               to="/products"
-              className="text-lg font-semibold text-gray-400 hover:text-gray-900"
+              className={`text-lg font-semibold ${isActive(
+                "/products"
+              )} hover:text-gray-900`}
             >
               Products
             </Link>
             <Link
               to="/recipes"
-              className="text-lg font-semibold text-gray-400 hover:text-gray-900"
+              className={`text-lg font-semibold ${isActive(
+                "/recipes"
+              )} hover:text-gray-900`}
             >
               Recipes
             </Link>

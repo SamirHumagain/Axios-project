@@ -1,17 +1,16 @@
-import LoginPage from "./Component/LoginPage";
+import LoginPage from "./Component/Login/LoginPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Profilepage from "./Component/Profilepage";
-import Products from "./Component/Products";
-import Productdetails from "./Component/Productdetails";
-import Editpage from "./Component/Editpage";
+import Profilepage from "./Component/Login/Profilepage";
+import Products from "./Component/Products/Products";
+import Productdetails from "./Component/Products/Productdetails";
+import Editpage from "./Component/Products/Editpage";
 import Navbar from "./Component/Navbar";
-import PrivateRoute from "./Component/PrivateRoute";
-import Recipes from "./Component/Recipes";
-import recipedetails from "./Component/Recipedetails";
-import Recipedetails from "./Component/Recipedetails";
-import { Signup } from "./Component/Signup";
-import ReusablePopup from "./Component/modal";
+import PrivateRoute from "./Component/Login/PrivateRoute";
+import Recipes from "./Component/Recipes/Recipes";
+import Recipedetails from "./Component/Recipes/Recipedetails";
+import { Signup } from "./Component/Login/Signup";
+import Addtocart from "./Component/Addtocart";
 
 // import Counter from './Zustand/Counter';
 
@@ -27,17 +26,15 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/modal" element={<ReusablePopup />} />
-
-            <Route path="/productdetails/:id" element={<Productdetails />} />
-            <Route path="/editpage/:id" element={<Editpage />} />
-            <Route path="/recipedetails/:id" element={<Recipedetails />} />
 
             <Route element={<PrivateRoute />}>
               <Route path="/products" element={<Products />} />
               <Route path="/profile" element={<Profilepage />} />
               <Route path="/recipes" element={<Recipes />} />
-              <Route path="/recipedetails" element={<Recipedetails />} />
+              <Route path="/productdetails/:id" element={<Productdetails />} />
+              <Route path="/editpage/:id" element={<Editpage />} />
+              <Route path="/recipedetails/:id" element={<Recipedetails />} />
+              <Route path="/addtocart" element={<Addtocart />} />
             </Route>
           </Routes>
         </div>
